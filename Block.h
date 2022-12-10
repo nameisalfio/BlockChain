@@ -1,20 +1,30 @@
 #ifndef BLOCK_H
 #define BLOCK_H
 
-#include "sha256.h"
+#include <iostream>
+#include <sstream>
+#include <ctime>
+#include "sha256.h" //Hash function SHA-256
+
+using namespace std;
 
 class Block 
 {
 
 public:
-    string sHash;
-    string sPrevHash;
+    string sHash;   //hash of the current block 
+    string sPrevHash;   //link to previous block
 
     Block(int nIndexIn, const string &sDataIn) : _nIndex(nIndexIn), _sData(sDataIn)
     {
         _nNonce = 0;
         _tTime = time(nullptr);
         sHash = _CalculateHash();
+    }
+
+    string GetHash() 
+    { 
+        return sHash; 
     }
 
     void MineBlock(int nDifficulty)    
@@ -24,7 +34,7 @@ public:
             cstr[i] = '0';
         cstr[nDifficulty] = '\0'; 
 
-        string str(cstr);   //cstr diventa una stringa standard
+        string str(cstr);   //cstr becomes a standar string
 
         do
         {
