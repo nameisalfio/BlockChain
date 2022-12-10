@@ -22,18 +22,12 @@ public:
         sHash = _CalculateHash();
     }
 
-    string GetHash() 
-    { 
-        return sHash; 
-    }
-
     void MineBlock(int nDifficulty)    
     {
         char cstr[nDifficulty + 1];
-        for (int i = 0; i < nDifficulty; ++i)  
+        for (int i = 0; i < nDifficulty; i++)  
             cstr[i] = '0';
         cstr[nDifficulty] = '\0'; 
-
         string str(cstr);   //cstr becomes a standar string
 
         do
@@ -55,9 +49,6 @@ private:
     string _CalculateHash() const;  // inline function
 
 };
-
-
-// L'utilizzo di funzioni inline rende il programma più veloce perché elimina il sovraccarico associato alle chiamate di funzione
 
 inline string Block::_CalculateHash() const
 {
