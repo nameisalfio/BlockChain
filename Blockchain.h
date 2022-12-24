@@ -22,21 +22,33 @@ public:
         _vChain.push_back(bNew);
     }
 
+    Block _GetLastBlock() const {return _vChain.back();}
+
+    bool _isValid(Block _toCheck)
+    {
+        for(auto i = _vChain.begin(); i != _vChain.end(); i++)
+        {
+            if(_toCheck.sHash == (*i).sHash)
+                return true;
+        }
+        return false;
+    }
+
     friend ostream& operator<< (ostream& os, Blockchain& b)
     {
         os << "\nBlockchain:\n" << endl;
         for(auto i = (b._vChain).begin(); i != (b._vChain).end(); i++)
             os << *i << endl;
-        return os;
+        return os << endl;
     }
+
+    Block operator[] (int i){return _vChain.at(i);}
 
 private:
 
     bool _verbose;
     int _nDifficulty;
     vector<Block> _vChain;  // vettore di Block
-
-    Block _GetLastBlock() const {return _vChain.back();}
 
 };
 

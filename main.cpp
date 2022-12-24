@@ -15,4 +15,15 @@ int main()
 
     cout << bChain << endl;
 
+    //Blocco valido
+    Block good = bChain[1];
+    cout << "First block to check: " << endl;
+    cout << good << endl;
+    cout << (bChain._isValid(good) ? "Block valid" : "Block is not valid") << endl;
+
+    //Blocco non valido
+    Block bad(5, "Block bad Data", true);
+    cout << "\nSecond block to check: " << endl;
+    cout << bad << endl;
+    cout << (bChain._isValid(bad) ? "Block valid" : "Block is not valid") << endl;
 }
