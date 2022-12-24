@@ -18,6 +18,7 @@ public:
 
     Block(int nIndexIn, const string &sDataIn, bool verbose = false) : _nIndex(nIndexIn), _sData(sDataIn), verbose(verbose)
     {
+        prev = nullptr;
         _nNonce = 0;
         _tTime = time(nullptr);
         sHash = _CalculateHash();
@@ -38,7 +39,7 @@ public:
         }
         while (sHash.substr(0, nDifficulty) != str);
 
-        cout << "Block mined: " << sHash << endl;
+        //cout << "Block mined: " << sHash << endl;
     }
 
     friend ostream& operator << (ostream& os, Block& b)
@@ -52,11 +53,15 @@ public:
         return os << "Hash: " << b.sHash << endl;
     }
 
+    bool operator != (Block& b){return this->sHash != b.sHash;}
+
 private:
+
     int _nIndex;
     int _nNonce;
     string _sData;
     time_t _tTime;
+    Block* prev;
 
     string _CalculateHash() const;  // inline function
 
