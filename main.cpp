@@ -22,7 +22,7 @@ int main()
     cout << (bChain._isValid(good) ? "Block valid" : "Block is not valid") << endl;
 
     //Blocco non valido
-    Block bad(5, "Block bad Data", true);
+    Block bad(5, "Block bad Data"); // stampa non discorsiva
     cout << "\nSecond block to check: " << endl;
     cout << bad << endl;
     cout << (bChain._isValid(bad) ? "Block valid" : "Block is not valid") << endl;

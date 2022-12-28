@@ -46,9 +46,9 @@ public:
 
 private:
 
-    bool _verbose;
-    int _nDifficulty;
     vector<Block> _vChain;  // vettore di Block
+    int _nDifficulty;
+    bool _verbose;
 
 };
 

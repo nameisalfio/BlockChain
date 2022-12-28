@@ -14,11 +14,9 @@ class Block
 public:
     string sHash;   //hash of the current block 
     string sPrevHash;   //link to previous block
-    bool verbose;
 
-    Block(int nIndexIn, const string &sDataIn, bool verbose = false) : _nIndex(nIndexIn), _sData(sDataIn), verbose(verbose)
+    Block(int nIndexIn, const string &sDataIn, bool _verboseIn = false) : _nIndex(nIndexIn), _sData(sDataIn), verbose(_verboseIn)
     {
-        prev = nullptr;
         _nNonce = 0;
         _tTime = time(nullptr);
         sHash = _CalculateHash();
@@ -61,7 +59,7 @@ private:
     int _nNonce;
     string _sData;
     time_t _tTime;
-    Block* prev;
+    bool verbose;
 
     string _CalculateHash() const;  // inline function
 
