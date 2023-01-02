@@ -15,7 +15,7 @@ public:
     string sHash;   //hash of the current block 
     string sPrevHash;   //link to previous block
 
-    Block(int nIndexIn, const string &sDataIn, bool _verboseIn = false) : _nIndex(nIndexIn), _sData(sDataIn), verbose(_verboseIn)
+    Block(int nIndexIn, const string &sDataIn, bool _verboseIn = false) : _nIndex(nIndexIn), _sData(sDataIn), _verbose(_verboseIn)
     {
         _nNonce = 0;
         _tTime = time(nullptr);
@@ -36,13 +36,13 @@ public:
             sHash = _CalculateHash();
         }
         while (sHash.substr(0, nDifficulty) != str);
-
-        //cout << "Block mined: " << sHash << endl;
+        
+        cout << "Block mined: " << sHash << endl;
     }
 
     friend ostream& operator << (ostream& os, Block& b)
     {
-        if(!b.verbose)
+        if(!b._verbose)
             return os << "Hash: " << b.sHash << endl;
         os << "Index: " << b._nIndex << endl;
         os << "Data: " << b._sData << endl;
@@ -59,7 +59,7 @@ private:
     int _nNonce;
     string _sData;
     time_t _tTime;
-    bool verbose;
+    bool _verbose;
 
     string _CalculateHash() const;  // inline function
 

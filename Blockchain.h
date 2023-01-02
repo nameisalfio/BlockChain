@@ -12,7 +12,7 @@ public:
     Blockchain(bool _verboseIn = false) : _verbose(_verboseIn)
     {
         _vChain.emplace_back(Block(0, "Genesis Block", _verbose));
-        _nDifficulty = 3;
+        _nDifficulty = 4;
     }
 
     void AddBlock(Block bNew)
